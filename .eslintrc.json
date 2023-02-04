@@ -1,0 +1,21 @@
+{
+    "env": {
+        "es2021": true,
+        "node": true
+    },
+    "extends": ["standard-with-typescript", "prettier"],
+    "overrides": [],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "plugins": ["vitest"],
+    "rules": {
+        "quotes": ["error", "double"],
+        "@typescript-eslint/quotes": ["error", "double"],
+        "semi": ["error", "always"],
+        "@typescript-eslint/semi": ["error", "always"],
+        "@typescript-eslint/strict-boolean-expressions": "off"
+    }
+}
