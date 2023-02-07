@@ -3,5 +3,6 @@ declare namespace NodeJS {
         PORT: string;
         HOSTNAME: string;
         FRONTEND_URL: string;
+        SECRET: string;
     }
 }
