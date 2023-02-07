@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 import { prisma } from "../db/db";
+import UserAlreadyExistError from "../errors/userAlreadyExistError";
 import type { User } from "../models/user";
 
 export const registerUser = async (
@@ -8,7 +9,7 @@ export const registerUser = async (
 ): Promise<User> => {
     const existingUser = await prisma.user.findUnique({ where: { username } });
     if (existingUser) {
-        throw new Error("User already exists");
+        throw new UserAlreadyExistError();
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
