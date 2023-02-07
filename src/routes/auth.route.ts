@@ -1,9 +1,9 @@
 import express from "express";
 import passport from "passport";
-import { login, logout, register } from "../controllers/auth.controllers";
+import { login, logout, register } from "../controllers/auth.controller";
 import authenicate from "../middlewares/authenticate.middleware";
 import validate from "../middlewares/validate.middleware";
-import { authLoginSchema, authRegisterSchema } from "../schemas/auth.schemas";
+import { authLoginSchema, authRegisterSchema } from "../schemas/auth.schema";
 import tc from "../utils/tryCatch";
 const authRouter = express.Router();
 
