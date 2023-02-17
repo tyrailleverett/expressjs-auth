@@ -1,20 +1,25 @@
-import { type Request, type Response } from "express";
+import { type NextFunction, type Request, type Response } from "express";
+import { type User } from "../models/user";
 import { registerUser } from "../services/auth.service";
 
 export const register = async (
     req: Request,
-    res: Response
+    res: Response,
+    next: NextFunction
 ): Promise<Response | undefined> => {
     try {
         const { username, password } = req.body;
         await registerUser(username, password);
         return res.status(200).end();
     } catch (err) {
-        console.log(err);
+        next(err);
     }
 };
 
 export const login = (req: Request, res: Response): Response => {
+    req.logIn(req.user as User, (err: any) => {
+        if (err) throw err;
+    });
     return res.status(200).end();
 };
 
@@ -23,4 +28,8 @@ export const logout = (req: Request, res: Response): Response => {
         if (err) throw err;
     });
     return res.status(200).end();
+};
+
+export const getUser = (req: Request, res: Response): Response => {
+    return res.status(200).json(req.user);
 };

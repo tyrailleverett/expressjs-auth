@@ -1,7 +1,7 @@
-import { type NextFunction, type Response } from "express";
+import { type NextFunction, type Request, type Response } from "express";
 
-const authenicate = (
-    req: any,
+const authenticate = (
+    req: Request,
     res: Response,
     next: NextFunction
 ): Response | undefined => {
@@ -11,4 +11,4 @@ const authenicate = (
     next();
 };
 
-export default authenicate;
+export default authenticate;
