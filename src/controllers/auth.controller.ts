@@ -1,6 +1,6 @@
 import { type NextFunction, type Request, type Response } from "express";
 import { type User } from "../models/user";
-import { registerUser } from "../services/auth.service";
+import { registerUser, removeUser } from "../services/auth.service";
 
 export const register = async (
     req: Request,
@@ -10,7 +10,7 @@ export const register = async (
     try {
         const { username, password } = req.body;
         await registerUser(username, password);
-        return res.status(200).end();
+        return res.status(201).end();
     } catch (err) {
         next(err);
     }
@@ -32,4 +32,18 @@ export const logout = (req: Request, res: Response): Response => {
 
 export const getUser = (req: Request, res: Response): Response => {
     return res.status(200).json(req.user);
+};
+
+export const deleteUser = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+): Promise<Response | undefined> => {
+    try {
+        const { id } = req.body;
+        await removeUser(id);
+        return res.status(200).end();
+    } catch (err) {
+        next(err);
+    }
 };

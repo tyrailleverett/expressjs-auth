@@ -1,4 +1,4 @@
-import { object, string } from "zod";
+import { number, object, string } from "zod";
 
 export const authRegisterSchema = object({
     body: object({
@@ -12,4 +12,8 @@ export const authLoginSchema = object({
         username: string(),
         password: string()
     })
+});
+
+export const authDeleteSchema = object({
+    body: object({ id: number().positive() })
 });

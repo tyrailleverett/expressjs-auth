@@ -25,3 +25,13 @@ export const registerUser = async (
 
     return registeredUser;
 };
+
+export const removeUser = async (id: number): Promise<void> => {
+    try {
+        await prisma.user.delete({
+            where: { id }
+        });
+    } catch (err) {
+        throw new Error("Unable to delete user");
+    }
+};

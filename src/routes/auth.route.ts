@@ -1,5 +1,6 @@
 import express from "express";
 import {
+    deleteUser,
     getUser,
     login,
     logout,
@@ -7,7 +8,11 @@ import {
 } from "../controllers/auth.controller";
 import authenticate from "../middlewares/authenticate.middleware";
 import validate from "../middlewares/validate.middleware";
-import { authLoginSchema, authRegisterSchema } from "../schemas/auth.schema";
+import {
+    authDeleteSchema,
+    authLoginSchema,
+    authRegisterSchema
+} from "../schemas/auth.schema";
 import passport from "../config/passport";
 
 const authRouter = express.Router();
@@ -21,5 +26,6 @@ authRouter.post(
 );
 authRouter.post("/logout", logout);
 authRouter.get("/user", authenticate, getUser);
+authRouter.delete("/delete", validate(authDeleteSchema), deleteUser);
 
 export default authRouter;
