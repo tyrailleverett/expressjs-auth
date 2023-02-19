@@ -4,5 +4,7 @@ declare namespace NodeJS {
         HOSTNAME: string;
         FRONTEND_URL: string;
         SECRET: string;
+
+        NODE_ENV: string;
     }
 }

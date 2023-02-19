@@ -1,0 +1,12 @@
+# Ignore everything
+*
+# Allow files and directories
+!/src
+!/prisma
+!package.json
+!tsconfig.json
+
+# Ignore unnecessary files and folders inside allowed directories
+/prisma/migrations
+/src/__tests__
+/src/config/vitest-setup.ts

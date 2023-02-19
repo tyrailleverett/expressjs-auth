@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+    db_dev:
+        image: postgres:14-alpine
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+            - POSTGRES_DB=db_dev
+        ports:
+            - "5432:5432"
+        volumes:
+            - db_dev:/var/lib/postgresql/data
+    db_test:
+        image: postgres:14-alpine
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+            - POSTGRES_DB=db_test
+        ports:
+            - "5433:5432"
+
+volumes:
+    db_dev:

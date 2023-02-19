@@ -1,17 +1,17 @@
 {
-    "name": "nodejs",
+    "name": "express-js-template",
     "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
+    "description": "An expressJS template built with Typescript, Prisma, and Passport",
+    "main": "dist/index.js",
     "scripts": {
-        "db:start": "dotenv -e .env.dev -e .env.test docker compose up",
+        "db:start": "dotenv -e .env.dev -e .env.test docker compose -f docker-compose.dev.yml up",
         "db:stop": "docker compose down",
         "db:push": "dotenv -e .env.test npx prisma db push",
         "studio": "dotenv -e .env.dev npx prisma studio",
         "db:migrate": "dotenv -e .env.dev npx prisma migrate dev --name $name",
         "dev": "dotenv -e .env.dev npx nodemon",
         "build": "rimraf ./dist && tsc",
-        "start": "pnpm run build && node dist/index.js",
+        "start": "node dist/index.js",
         "test": "dotenv -e .env.test vitest run",
         "test:watch": "dotenv -e .env.test vitest"
     },

@@ -1,23 +1,14 @@
 version: "3.9"
-services:
-    db_dev:
-        image: postgres:14-alpine
-        environment:
-            - POSTGRES_USER=${DB_USER}
-            - POSTGRES_PASSWORD=${DB_PASSWORD}
-            - POSTGRES_DB=${DB_DEV_NAME}
-        ports:
-            - ${DB_DEV_PORT}:5432
-        volumes:
-            - db_dev:/var/lib/postgresql/data
-    db_test:
-        image: postgres:14-alpine
-        environment:
-            - POSTGRES_USER=${DB_USER}
-            - POSTGRES_PASSWORD=${DB_PASSWORD}
-            - POSTGRES_DB=${DB_TEST_NAME}
-        ports:
-            - ${DB_TEST_PORT}:5432
 
-volumes:
-    db_dev:
+services:
+    api:
+      build:
+        context: .
+        target: production
+      ports:
+        - "3000:3000"
+      environment:
+        - SECRET=${SECRET}
+        - FRONTEND_URL=${FRONTEND_URL}
+        - DATABASE_URL=${DATABASE_URL}
+        - PORT=3000

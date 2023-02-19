@@ -4,11 +4,12 @@
         "moduleResolution": "NodeNext",
         "target": "es6",
         "strict": true,
+        "skipLibCheck": true,
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
-        "sourceMap": true,
+        "sourceMap": false,
         "outDir": "./dist",
         "types": ["vitest/globals"]
     },
-    "include": ["src/**/*.ts", "global.d.ts", "src/config/swagger.js"]
+    "include": ["src/**/*.ts", "global.d.ts"]
 }
