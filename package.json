@@ -20,6 +20,10 @@
         "ext": ".ts",
         "exec": "npx ts-node src/index.ts"
     },
+    "prettier": {
+        "tabWidth": 2,
+        "trailingComma": "none"
+    },
     "lint-staged": {
         "*.ts": [
             "prettier --write .",

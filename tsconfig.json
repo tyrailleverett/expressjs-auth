@@ -1,16 +1,16 @@
 {
-    "compilerOptions": {
-        "module": "NodeNext",
-        "moduleResolution": "NodeNext",
-        "target": "es6",
-        "strict": true,
-        "skipLibCheck": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "forceConsistentCasingInFileNames": true,
-        "sourceMap": false,
-        "outDir": "./dist",
-        "types": ["vitest/globals"]
-    },
-    "include": ["src/**/*.ts", "global.d.ts"]
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "es6",
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "sourceMap": false,
+    "outDir": "./dist",
+    "types": ["vitest/globals"]
+  },
+  "include": ["src/**/*.ts", "global.d.ts"]
 }

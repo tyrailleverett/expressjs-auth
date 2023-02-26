@@ -6,27 +6,27 @@ const inProd = process.env.NODE_ENV === "production";
 
 const RedisStore = connectRedis(session);
 const redisClient = createClient({
-    url: "redis://localhost:6379",
-    legacyMode: true
+  url: "redis://localhost:6379",
+  legacyMode: true
 });
 
 redisClient.on("connect", () => {
-    console.log("Connected to redis successfully");
+  console.log("Connected to redis successfully");
 });
 
 redisClient.connect().catch(console.error);
 
 const sessionConfig: any = {
-    store: new RedisStore({ client: redisClient as any }),
-    secret: process.env.SECRET,
-    saveUninitialized: true,
-    resave: false,
-    cookie: {
-        maxAge: 24 * 60 * 60 * 1000,
-        secure: `${inProd ? "true" : "auto"}`,
-        httpOnly: true,
-        sameSite: `${inProd ? "none" : "lax"}`
-    }
+  store: new RedisStore({ client: redisClient as any }),
+  secret: process.env.SECRET,
+  saveUninitialized: true,
+  resave: false,
+  cookie: {
+    maxAge: 24 * 60 * 60 * 1000,
+    secure: `${inProd ? "true" : "auto"}`,
+    httpOnly: true,
+    sameSite: `${inProd ? "none" : "lax"}`
+  }
 };
 
 export default sessionConfig;
