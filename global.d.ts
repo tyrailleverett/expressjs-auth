@@ -1,10 +1,9 @@
 declare namespace NodeJS {
-    export interface ProcessEnv {
-        PORT: string;
-        HOSTNAME: string;
-        FRONTEND_URL: string;
-        SECRET: string;
-
-        NODE_ENV: string;
-    }
+  export interface ProcessEnv {
+    SERVER_PORT: string;
+    FRONTEND_URL: string;
+    SESSION_SECRET: string;
+    REDIS_URL: string;
+    NODE_ENV: string;
+  }
 }

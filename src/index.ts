@@ -2,8 +2,7 @@ import "dotenv/config";
 import app from "./app";
 import prisma from "./db/prisma";
 
-const port = process.env.PORT;
-const hostname = process.env.HOSTNAME;
+const port = process.env.SERVER_PORT;
 const isDev = process.env.NODE_ENV === "development";
 
 prisma.$queryRaw`SELECT 1`
@@ -11,7 +10,7 @@ prisma.$queryRaw`SELECT 1`
     console.log("Successfully connected to DB.");
     app.listen(port, () => {
       if (isDev) {
-        console.log(`Server listening on http://${hostname}:${port}`);
+        console.log(`Server listening on http://localhost:${port}`);
       }
     });
   })
