@@ -21,6 +21,7 @@ app.use(passport.session());
 
 app.use("/api", indexRouter);
 app.use((req: Request, res: Response) => res.sendStatus(404));
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     res.status(400).json({ err: err.message });
 });

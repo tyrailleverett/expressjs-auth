@@ -1,8 +1,8 @@
 import { registerUser, removeUser } from "../../services/auth.service";
 
-describe("Testing Auth Service", () => {
-    describe("Testing Registering a User", () => {
-        test("Should return registered user", async () => {
+describe("testing Auth Service", () => {
+    describe("testing Registering a User", () => {
+        it("should return registered user", async () => {
             const registeredUser = await registerUser("user8", "password8");
             expect(registeredUser).toMatchObject({
                 id: expect.any(Number),
@@ -11,7 +11,7 @@ describe("Testing Auth Service", () => {
             expect(registeredUser.id).toBe(4);
         });
 
-        test("Should throw an error if user already exists", async () => {
+        it("should throw an error if user already exists", async () => {
             try {
                 await registerUser("user1", "password1");
             } catch (err) {
@@ -19,8 +19,8 @@ describe("Testing Auth Service", () => {
             }
         });
     });
-    describe("Testing deleting a user", () => {
-        test("Should delete a user", () => {
+    describe("testing deleting a user", () => {
+        it("should delete a user", () => {
             expect(async () => {
                 await removeUser(1);
             }).not.toThrow(new Error());

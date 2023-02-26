@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { prisma } from "../db/prisma";
+import prisma from "../db/prisma";
 import type { UserReturnDTO } from "../models/user";
 
 export const registerUser = async (
