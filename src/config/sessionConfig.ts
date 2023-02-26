@@ -1,13 +1,24 @@
-import pgSession from "connect-pg-simple";
+import connectRedis from "connect-redis";
 import session from "express-session";
+import { createClient } from "redis";
 
-const PGStore = pgSession(session);
 const inProd = process.env.NODE_ENV === "production";
 
+const RedisStore = connectRedis(session);
+const redisClient = createClient({
+    url: "redis://localhost:6379",
+    legacyMode: true
+});
+
+redisClient.on("connect", () => {
+    console.log("Connected to redis successfully");
+});
+
+redisClient.connect().catch(console.error);
+
 const sessionConfig: any = {
-    store: new PGStore({ createTableIfMissing: true }),
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-    secret: process.env.SECRET as string,
+    store: new RedisStore({ client: redisClient as any }),
+    secret: process.env.SECRET,
     saveUninitialized: true,
     resave: false,
     cookie: {

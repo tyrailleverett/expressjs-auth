@@ -1,6 +1,6 @@
 import "dotenv/config";
 import app from "./app";
-import { prisma } from "./db/db";
+import { prisma } from "./db/prisma";
 
 const port = process.env.PORT;
 const hostname = process.env.HOSTNAME;

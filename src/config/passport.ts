@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import passport from "passport";
 import LocalStrategy from "passport-local";
-import { prisma } from "../db/db";
+import { prisma } from "../db/prisma";
 import { type User } from "../models/user";
 
 passport.serializeUser((user, done) => {

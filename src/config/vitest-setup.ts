@@ -1,4 +1,4 @@
-import { prisma } from "../db/db";
+import { prisma } from "../db/prisma";
 
 beforeAll(async () => {
     await prisma.$queryRaw`TRUNCATE TABLE "User" RESTART IDENTITY;`;

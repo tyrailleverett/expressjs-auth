@@ -1,8 +1,11 @@
-import express from "express";
+import express, { type Request } from "express";
 import authRouter from "./auth.route";
 
 const indexRouter = express.Router();
 
 indexRouter.use("/auth", authRouter);
+indexRouter.use("/healthcheck", (req: Request, res, Response) => {
+    res.status(200).end();
+});
 
 export default indexRouter;

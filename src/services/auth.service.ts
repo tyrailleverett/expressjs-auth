@@ -1,15 +1,14 @@
 import bcrypt from "bcrypt";
-import { prisma } from "../db/db";
-import UserAlreadyExistError from "../errors/userAlreadyExistError";
-import type { User } from "../models/user";
+import { prisma } from "../db/prisma";
+import type { UserReturnDTO } from "../models/user";
 
 export const registerUser = async (
     username: string,
     password: string
-): Promise<User> => {
+): Promise<UserReturnDTO> => {
     const existingUser = await prisma.user.findUnique({ where: { username } });
     if (existingUser) {
-        throw new UserAlreadyExistError();
+        throw new Error("Username already exists");
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -17,6 +16,10 @@ export const registerUser = async (
         data: {
             username,
             password: hashedPassword
+        },
+        select: {
+            id: true,
+            username: true
         }
     });
     if (!registeredUser) {
