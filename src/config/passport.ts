@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import passport from "passport";
 import LocalStrategy from "passport-local";
-import prisma from "../db/prisma";
+import db from "../db/db";
 import { type User } from "../user/user.model";
 
 passport.serializeUser((user, done) => {
@@ -15,9 +15,10 @@ passport.deserializeUser((user: User, done) => {
 passport.use(
   new LocalStrategy.Strategy(
     async (username: string, password: string, done: any) => {
-      const user = await prisma.user.findUnique({
-        where: { username }
-      });
+      const user: User = await db("users")
+        .select("*")
+        .where({ username })
+        .first();
 
       if (!user) {
         return done(null, false);

@@ -8,8 +8,8 @@ export const register = async (
   next: NextFunction
 ): Promise<Response | null> => {
   try {
-    const { username, password } = req.body;
-    await registerUser(username, password);
+    const { username, password, avatar } = req.body;
+    await registerUser(username, password, avatar);
     return res.status(201).end();
   } catch (err) {
     next(err);
@@ -42,6 +42,7 @@ export const deleteUser = async (
   try {
     const { id } = req.body;
     await removeUser(id);
+    req.session.destroy(() => {});
     return res.status(200).end();
   } catch (err) {
     next(err);

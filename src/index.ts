@@ -1,11 +1,11 @@
 import "dotenv/config";
 import app from "./app";
-import prisma from "./db/prisma";
+import db from "./db/db";
 
 const port = process.env.SERVER_PORT;
 const isDev = process.env.NODE_ENV === "development";
 
-prisma.$queryRaw`SELECT 1`
+db.raw("SELECT 1")
   .then(() => {
     console.log("Successfully connected to DB.");
     app.listen(port, () => {

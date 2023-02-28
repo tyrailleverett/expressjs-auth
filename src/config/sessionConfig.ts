@@ -1,20 +1,9 @@
 import connectRedis from "connect-redis";
 import session from "express-session";
-import { createClient } from "redis";
+import redisClient from "./redis";
 
 const inProd = process.env.NODE_ENV === "production";
-
 const RedisStore = connectRedis(session);
-const redisClient = createClient({
-  url: process.env.REDIS_URL,
-  legacyMode: true
-});
-
-redisClient.on("connect", () => {
-  console.log("Connected to redis successfully");
-});
-
-redisClient.connect().catch(console.error);
 
 const sessionConfig: any = {
   store: new RedisStore({ client: redisClient as any }),

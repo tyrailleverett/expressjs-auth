@@ -1,16 +1,13 @@
-import prisma from "../db/prisma";
+import db from "../db/db";
 
 beforeAll(async () => {
-  await prisma.$queryRaw`TRUNCATE TABLE "User" RESTART IDENTITY;`;
-  await prisma.user.createMany({
-    data: [
-      { username: "user1", password: "password1" },
-      { username: "user2", password: "password2" },
-      { username: "user3", password: "password3" }
-    ]
-  });
+  await db("users").insert([
+    { username: "user1", password: "password1", avatar: "avatar1" },
+    { username: "user2", password: "password2", avatar: "avatar2" },
+    { username: "user3", password: "password3", avatar: "avatar3" }
+  ]);
 });
 
 afterAll(async () => {
-  await prisma.$queryRaw`TRUNCATE TABLE "User" RESTART IDENTITY;`;
+  await db("users").truncate();
 });
