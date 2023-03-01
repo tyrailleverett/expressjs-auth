@@ -59,10 +59,8 @@ describe("auth controller", () => {
 
   describe("post /user/logout", () => {
     it("should return 200 response code", async () => {
-      const response = await superAgent
-        .post("/api/user/logout")
-        .set("cookie", cookie);
-      console.log(response.headers);
+      const response = await superAgent.post("/api/user/logout");
+
       expect(response.statusCode).toEqual(200);
     });
   });
@@ -72,6 +70,7 @@ describe("auth controller", () => {
       const response = await superAgent
         .delete("/api/user/delete")
         .send({ id: 1 });
+
       expect(response.statusCode).toEqual(200);
     });
     it("should return 400 response code if an invalid id is given", async () => {

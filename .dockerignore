@@ -6,6 +6,5 @@
 !tsconfig.json
 
 # Ignore unnecessary files and folders inside allowed directories
-/src/db/migrations
 /src/__tests__
 /src/config/vitest-setup.ts

@@ -1,12 +1,11 @@
-import connectRedis from "connect-redis";
+import pgSession from "connect-pg-simple";
 import session from "express-session";
-import redisClient from "./redis";
 
 const inProd = process.env.NODE_ENV === "production";
-const RedisStore = connectRedis(session);
+const PGStore = pgSession(session);
 
 const sessionConfig: any = {
-  store: new RedisStore({ client: redisClient as any }),
+  store: new PGStore({ createTableIfMissing: true }),
   secret: process.env.SESSION_SECRET,
   saveUninitialized: true,
   resave: false,
